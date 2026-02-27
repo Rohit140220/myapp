@@ -1,9 +1,11 @@
 /* --- Global Styles --- */
 :root {
-    --primary-color: #2563eb;
-    --dark-color: #1e293b;
-    --light-color: #f8fafc;
-    --text-color: #334155;
+    --primary-color: #e53935; /* Bold red accent */
+    --primary-hover: #b71c1c;
+    --bg-color: #121212; /* Deep dark background */
+    --card-bg: #1e1e1e; /* Slightly lighter dark for cards */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
 }
 
 * {
@@ -15,8 +17,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: #ffffff;
+    color: var(--text-main);
+    background-color: var(--bg-color);
 }
 
 a {
@@ -26,8 +28,9 @@ a {
 
 /* --- Navigation --- */
 header {
-    background-color: var(--dark-color);
-    color: #fff;
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #333;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -37,9 +40,15 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1.2rem 5%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.logo {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
 }
 
 .nav-links {
@@ -49,36 +58,40 @@ header {
 }
 
 .nav-links a {
-    color: #fff;
+    color: var(--text-main);
     font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #cbd5e1;
+    color: var(--primary-color);
 }
 
 /* --- Hero Section --- */
 .hero {
-    background-color: var(--light-color);
-    padding: 100px 5%;
+    padding: 120px 5%;
     text-align: center;
-    min-height: 60vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #1a1a1a 100%);
 }
 
 .hero-content h2 {
-    font-size: 3rem;
-    color: var(--dark-color);
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 650px;
     margin-inline: auto;
 }
 
@@ -86,76 +99,124 @@ header {
     display: inline-block;
     background-color: var(--primary-color);
     color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: 5px;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
 }
 
 .btn:hover {
-    background-color: #1d4ed8;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 57, 53, 0.5);
     color: #fff;
 }
 
-/* --- Sections (About & Projects) --- */
-.about, .projects {
-    padding: 80px 5%;
+/* --- Sections --- */
+.projects {
+    padding: 100px 5%;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
 
 h2 {
-    font-size: 2.2rem;
-    color: var(--dark-color);
-    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: -10px;
+    left: 25%;
+    border-radius: 2px;
 }
 
 /* --- Project Grid --- */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
 }
 
 .card {
-    background: var(--light-color);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid #333;
+    transition: all 0.4s ease;
+    text-align: left;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .card h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--dark-color);
+    color: var(--text-main);
+}
+
+.card p {
+    color: var(--text-muted);
 }
 
 /* --- Footer --- */
 footer {
-    background-color: var(--dark-color);
-    color: #fff;
+    background-color: #0a0a0a;
     text-align: center;
-    padding: 2rem 5%;
-    margin-top: 40px;
+    padding: 4rem 5% 2rem;
+    margin-top: 60px;
+    border-top: 1px solid #333;
 }
 
-footer p {
-    margin-bottom: 0.5rem;
+.footer-content h2 {
+    margin-bottom: 1.5rem;
+}
+
+.footer-content h2::after {
+    display: none; /* Hide the underline for footer */
+}
+
+.footer-content a {
+    font-weight: bold;
+}
+
+.copyright {
+    margin-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
     }
     
     .hero-content h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    
+    .hero {
+        padding: 80px 5%;
     }
 }
